@@ -1,0 +1,59 @@
+syntax = "proto3";
+
+package abi;
+
+// 短链接数据结构
+message ShortUrl {
+  int64 id = 1;
+  string long_url = 2;
+  string short_code = 3;
+  string created_at = 4;
+  optional string expires_at = 5;
+  string user_id = 6;
+}
+
+// 创建短链接请求
+message CreateShortUrlRequest {
+  string long_url = 1;
+  optional string custom_code = 2;
+  optional int64 timeout = 3; // 超时时间（秒）
+  string user_id = 4;
+}
+
+// 短链接响应
+message ShortUrlResponse {
+  int64 id = 1;
+  string long_url = 2;
+  string short_code = 3;
+  string short_url = 4; // 完整的短链接 URL
+  string created_at = 5;
+  optional string expires_at = 6;
+}
+
+// 获取用户链接响应
+message GetUserUrlsResponse {
+  repeated ShortUrl urls = 1;
+}
+
+// 删除链接请求
+message DeleteShortUrlRequest {
+  int64 id = 1;
+  string user_id = 2;
+}
+
+// 通用响应
+message ApiResponse {
+  bool success = 1;
+  string message = 2;
+  oneof data {
+    ShortUrlResponse short_url = 3;
+    GetUserUrlsResponse user_urls = 4;
+  }
+}
+
+// 错误响应
+message ErrorResponse {
+  bool success = 1;
+  string message = 2;
+  string error_code = 3;
+}

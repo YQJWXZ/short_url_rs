@@ -1,17 +1,32 @@
 [package]
 name = "short_url_rs"
 version = "0.1.0"
-authors = ["Your Name <YourName@yourdomain.com>"]
-edition = "2024"
+authors = ["Xiaoyi <xiaoyi5096@163.com>"]
+edition = "2021"
 license = "MIT"
 documentation = "https://docs.rs/"
 repository = "https://github.com/TODO"
 homepage = "https://github.com/TODO"
-description = """
+description = "A highly available short-link service project implemented using Rust + React."
 
-"""
 readme = "README.md"
 categories = ["development-tools"]
 keywords = []
 
 [dependencies]
+actix-web = "4"
+actix-cors = "0.6"
+sqlx = { version = "0.7", features = [ "runtime-tokio-rustls", "sqlite", "macros", "chrono" ] }
+tokio = { version = "1", features = ["full"] }
+dotenv = "0.15"
+chrono = { version = "0.4", features = ["serde"] }
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+env_logger = "0.10"
+rand = "0.8"
+regex = "1.0"
+url = "2.5.4"
+prost = "0.14.0"
+
+[build-dependencies]
+prost-build = "0.14.0"
