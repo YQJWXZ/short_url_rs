@@ -36,9 +36,8 @@ repos:
         description: check typo
         entry: bash -c 'typos'
         language: rust
-        files: \.rs$
+        files: \.*$
         pass_filenames: false
-        exclude: ^frontend/
       - id: cargo-check
         name: cargo check
         description: Check the package for errors.
