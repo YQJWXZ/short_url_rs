@@ -1,3 +1,4 @@
 /target
 .history
 Cargo.lock
+/frontend/node_modules

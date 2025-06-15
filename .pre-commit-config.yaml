@@ -9,7 +9,6 @@ repos:
       - id: check-symlinks
       - id: check-yaml
       - id: end-of-file-fixer
-        exclude: ^fixtures/index.html$|^test.rest$
       - id: mixed-line-ending
       - id: trailing-whitespace
   - repo: https://github.com/psf/black
@@ -37,8 +36,9 @@ repos:
         description: check typo
         entry: bash -c 'typos'
         language: rust
-        files: \.*$
+        files: \.rs$
         pass_filenames: false
+        exclude: ^frontend/
       - id: cargo-check
         name: cargo check
         description: Check the package for errors.
