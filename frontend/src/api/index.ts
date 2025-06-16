@@ -1,4 +1,4 @@
-import { ShortUrl, CreateShortUrlRequest, ApiResponse } from '../types';
+import { ShortUrl, CreateShortUrlRequest, ApiResponse, QRCodeResponse } from '../types';
 
 const API_BASE_URL = 'http://localhost:8080/api';
 
@@ -42,5 +42,9 @@ export const api = {
     if (!result.success) {
       throw new Error(result.message);
     }
+  },
+
+  async getQRCode(shortCode: string): Promise<string> {
+    return `${API_BASE_URL}/qrcode/${shortCode}`;
   },
 };

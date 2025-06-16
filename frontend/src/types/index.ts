@@ -19,3 +19,7 @@ export interface ApiResponse<T> {
   message: string;
   data?: T;
 }
+
+export interface QRCodeResponse {
+  qr_code: string;
+}

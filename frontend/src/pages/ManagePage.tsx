@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { api } from '../api';
 import { ShortUrl } from '../types';
+import QRCode from '../components/QRCode';
+import '../styles/qrcode.css';
 
 interface ManagePageProps {
   userId: string;
@@ -10,6 +12,7 @@ const ManagePage: React.FC<ManagePageProps> = ({ userId }) => {
   const [urls, setUrls] = useState<ShortUrl[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
+  const [selectedUrl, setSelectedUrl] = useState<string | null>(null);
 
   useEffect(() => {
     loadUrls();
@@ -118,12 +121,22 @@ const ManagePage: React.FC<ManagePageProps> = ({ userId }) => {
                 <div className="url-actions">
                   <button
                     type="button"
+                    onClick={() => setSelectedUrl(selectedUrl === url.short_code ? null : url.short_code)}
+                    className="qr-button"
+                  >
+                    {selectedUrl === url.short_code ? '隐藏二维码' : '显示二维码'}
+                  </button>
+                  <button
+                    type="button"
                     onClick={() => handleDelete(url.id)}
                     className="delete-button"
                   >
                     删除
                   </button>
                 </div>
+                {selectedUrl === url.short_code && (
+                  <QRCode longUrl={url.long_url} />
+                )}
               </div>
             ))}
           </div>

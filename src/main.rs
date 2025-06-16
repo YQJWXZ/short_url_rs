@@ -34,7 +34,8 @@ async fn main() -> std::io::Result<()> {
                 web::scope("/api")
                     .service(shorten::create_short_url)
                     .service(shorten::get_short_urls)
-                    .service(shorten::delete_short_url),
+                    .service(shorten::delete_short_url)
+                    .service(qrcode::redirect_qrcode),
             )
             .service(redirect::redirect_to_long_url)
             .route(
